@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="byu.byuparking.MainActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/northButton"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="20"
+            android:text="North Campus"
+            tools:layout_editor_absoluteY="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/westButton"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="50"
+                android:text="West Campus" />
+
+            <Button
+                android:id="@+id/eastButton"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="50"
+                android:text="East Campus" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/southButton"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="20"
+            android:text="South Campus"
+            tools:layout_editor_absoluteY="288dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <Button
+            android:id="@+id/allButton"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="20"
+            android:text="Show All"
+            tools:layout_editor_absoluteY="427dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
