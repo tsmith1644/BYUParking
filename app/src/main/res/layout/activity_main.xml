@@ -26,8 +26,9 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight=".33"
                 android:orientation="vertical">
 
                 <TextView
@@ -46,8 +47,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="100dp"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight=".33"
                 android:orientation="vertical">
 
                 <TextView
@@ -67,9 +69,9 @@
 
             <Button
                 android:id="@+id/getDirections"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight=".33"
                 android:text="Get Directions" />
         </LinearLayout>
 
