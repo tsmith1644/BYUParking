@@ -3,6 +3,7 @@ package byu.byuparking;
 /**
  * Created by Garrett on 10/5/2017.
  */
+import com.google.android.gms.maps.model.LatLng;
 
 public class lots
 {
@@ -12,7 +13,7 @@ public class lots
     private int hoursEnd;
     private double distance;
     private String lotType;
-    //Find lat long for google maps for final destination
+    private LatLng destination;
 
     public int getTotalSpots() {
         return totalSpots;
@@ -50,10 +51,6 @@ public class lots
         return distance;
     }
 
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
-
     public String getLotType() {
         return lotType;
     }
@@ -62,13 +59,14 @@ public class lots
         this.lotType = lotType;
     }
 
-    public lots(int totalSpots, int currentAvailable, int hoursStart, int hoursEnd, String lotType)
+    public lots(int totalSpots, int currentAvailable, int hoursStart, int hoursEnd, String lotType, LatLng destination)
     {
         this.totalSpots = totalSpots;
         this.currentAvailable = currentAvailable;
         this.hoursStart = hoursStart;
         this.hoursEnd = hoursEnd;
         this.lotType = lotType;
+        this.destination = destination;
     }
 
     public String displayAvailability()
@@ -81,14 +79,29 @@ public class lots
     //sets up hours for display
     public String displayHours()
     {
-        String hours = Integer.toString(hoursStart)+"am-"+Integer.toString(hoursEnd)+"pm";
+        String hours = Integer.toString(hoursStart)+"am-"+Integer.toString(hoursEnd)+"pm M-F";
         return hours;
     }
 
-    //pass in the lat long (currentLocation)
-    public void updateDistance()
+    public void updateDistance( LatLng currentLocation)
     {
 
+        double tempLat;
+        double tempLong;
+        int radius = 6371;
+        tempLat = degreesToRadians(this.destination.latitude - currentLocation.latitude);
+        tempLong = degreesToRadians(this.destination.longitude - currentLocation.longitude);
+        double newDistance = Math.sin((tempLat/2)) * Math.sin(tempLat/2) +
+                Math.cos(degreesToRadians(currentLocation.latitude)) * Math.cos(degreesToRadians(this.destination.latitude))
+                * Math.sin(tempLong/2) * Math.sin(tempLong/2);
+
+        double temp = 2 * Math.atan2(Math.sqrt(newDistance),Math.sqrt(1-newDistance));
+        this.distance = radius*temp;
+    }
+
+    private double degreesToRadians(double degree)
+    {
+        return degree * (Math.PI/180);
     }
 
 
