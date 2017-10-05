@@ -8,7 +8,7 @@ import com.google.android.gms.maps.model.LatLng;
  */
 
 public class listOfLots {
-    private TreeMap<String, lots> parkingList;
+    private TreeMap<String, lots> parkingList = new TreeMap<>();
 
     //public lots(int totalSpots, int currentAvailable, int hoursStart, int hoursEnd, String lotType, LatLng destination)
     public listOfLots() {
