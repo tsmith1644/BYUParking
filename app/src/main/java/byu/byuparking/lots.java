@@ -69,6 +69,10 @@ public class lots
         this.destination = destination;
     }
 
+    public LatLng getDestination() {
+        return destination;
+    }
+
     public String displayAvailability()
     {
         //could possibly remove available

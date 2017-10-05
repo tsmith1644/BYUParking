@@ -10,9 +10,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private listOfLots lots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +35,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        lots = new listOfLots();
         // Add a marker in Sydney and move the camera
         LatLng byu = new LatLng(40.2518, -111.6493);
         float zoomLevel = 14.0f;
-        mMap.addMarker(new MarkerOptions().position(byu).title("Marker in BYU"));
+        lots.getParkingList();
+        for (Map.Entry<String, lots> entry : lots.getParkingList().entrySet()) {
+            mMap.addMarker(new MarkerOptions().position(entry.getValue().getDestination()).title("Lot " + entry.getKey()));
+        }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(byu, zoomLevel));
     }
 }
