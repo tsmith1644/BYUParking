@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         float zoomLevel = 14.0f;
         lots.getParkingList();
         for (Map.Entry<String, lots> entry : lots.getParkingList().entrySet()) {
-            mMap.addMarker(new MarkerOptions().position(entry.getValue().getDestination()).title("Lot " + entry.getKey()+" Type:"+entry.getValue().getLotType()+ "Spots: "+entry.getValue().displayAvailability()));
+            mMap.addMarker(new MarkerOptions().position(entry.getValue().getDestination()).title("Lot " + entry.getKey() + " Type: " + entry.getValue().getLotType() + " " + entry.getValue().displayAvailability()));
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(byu, zoomLevel));
     }
