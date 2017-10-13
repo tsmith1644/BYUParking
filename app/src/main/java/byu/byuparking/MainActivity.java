@@ -4,6 +4,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -40,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng byu = new LatLng(40.2518, -111.6493);
         float zoomLevel = 14.0f;
         lots.getParkingList();
-        for (Map.Entry<String, lots> entry : lots.getParkingList().entrySet()) {
-            mMap.addMarker(new MarkerOptions().position(entry.getValue().getDestination()).title("Lot " + entry.getKey() + " Type: " + entry.getValue().getLotType() + " " + entry.getValue().displayAvailability()));
+        for (Map.Entry<String, Lot> entry : lots.getParkingList().entrySet()) {
+            mMap.addMarker(new MarkerOptions().position(entry.getValue().getDestination()).icon(BitmapDescriptorFactory.defaultMarker(entry.getValue().getAvailabilityColor())).title("Lot " + entry.getKey() + " Type: " + entry.getValue().getLotType() + " " + entry.getValue().displayAvailability()));
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(byu, zoomLevel));
     }

@@ -3,9 +3,11 @@ package byu.byuparking;
 /**
  * Created by Garrett on 10/5/2017.
  */
+
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 
-public class lots
+public class Lot
 {
     private int totalSpots;
     private int currentAvailable;
@@ -59,7 +61,7 @@ public class lots
         this.lotType = lotType;
     }
 
-    public lots(int totalSpots, int currentAvailable, int hoursStart, int hoursEnd, String lotType, LatLng destination)
+    public Lot(int totalSpots, int currentAvailable, int hoursStart, int hoursEnd, String lotType, LatLng destination)
     {
         this.totalSpots = totalSpots;
         this.currentAvailable = currentAvailable;
@@ -101,6 +103,20 @@ public class lots
 
         double temp = 2 * Math.atan2(Math.sqrt(newDistance),Math.sqrt(1-newDistance));
         this.distance = radius*temp;
+    }
+
+    public float getAvailabilityColor() {
+        if (currentAvailable == 0 || totalSpots == 0) {
+            return BitmapDescriptorFactory.HUE_RED;
+        }
+        float percentAvailable = (float) currentAvailable / (float) totalSpots;
+        if (percentAvailable > 0.5) {
+            return BitmapDescriptorFactory.HUE_GREEN;
+        } else if (percentAvailable > 0.1) {
+            return BitmapDescriptorFactory.HUE_YELLOW;
+        } else {
+            return BitmapDescriptorFactory.HUE_ORANGE;
+        }
     }
 
     private double degreesToRadians(double degree)
