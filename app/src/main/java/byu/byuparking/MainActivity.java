@@ -7,6 +7,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolygonOptions;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -42,8 +43,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         float zoomLevel = 14.0f;
         lots.getParkingList();
         for (Map.Entry<String, Lot> entry : lots.getParkingList().entrySet()) {
-            mMap.addMarker(new MarkerOptions().position(entry.getValue().getDestination()).icon(BitmapDescriptorFactory.defaultMarker(entry.getValue().getAvailabilityColor())).title("Lot " + entry.getKey() + " Type: " + entry.getValue().getLotType() + " " + entry.getValue().displayAvailability()));
+            //mMap.addMarker(new MarkerOptions().position(entry.getValue().getDestination()).icon(BitmapDescriptorFactory.defaultMarker(entry.getValue().getAvailabilityColor())).title("Lot " + entry.getKey() + " Type: " + entry.getValue().getLotType() + " " + entry.getValue().displayAvailability()));
+            drawParkingLot(entry.getValue(), entry.getKey());
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(byu, zoomLevel));
+    }
+
+    public void drawParkingLot(Lot lot, String name) {
+        //add lot marker
+        mMap.addMarker(new MarkerOptions().position(lot.getDestination()).icon(BitmapDescriptorFactory.defaultMarker(lot.getAvailabilityColor())).title("Lot " + name + " Type: " + lot.getLotType() + " " + lot.displayAvailability()));
+        //draw lot polygon
+        mMap.addPolygon(new PolygonOptions().addAll(lot.getLotShape()));
     }
 }

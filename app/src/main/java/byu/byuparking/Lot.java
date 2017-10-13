@@ -7,6 +7,8 @@ package byu.byuparking;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.List;
+
 public class Lot
 {
     private int totalSpots;
@@ -16,6 +18,7 @@ public class Lot
     private double distance;
     private String lotType;
     private LatLng destination;
+    private List<LatLng> lotShape;
 
     public int getTotalSpots() {
         return totalSpots;
@@ -61,7 +64,7 @@ public class Lot
         this.lotType = lotType;
     }
 
-    public Lot(int totalSpots, int currentAvailable, int hoursStart, int hoursEnd, String lotType, LatLng destination)
+    public Lot(int totalSpots, int currentAvailable, int hoursStart, int hoursEnd, String lotType, LatLng destination, List<LatLng> lotShape)
     {
         this.totalSpots = totalSpots;
         this.currentAvailable = currentAvailable;
@@ -69,6 +72,11 @@ public class Lot
         this.hoursEnd = hoursEnd;
         this.lotType = lotType;
         this.destination = destination;
+        this.lotShape = lotShape;
+    }
+
+    public List<LatLng> getLotShape() {
+        return lotShape;
     }
 
     public LatLng getDestination() {
