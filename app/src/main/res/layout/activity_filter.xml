@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/filterTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select what type of parking you would like to show:" />
+
+    <RadioButton
+        android:id="@+id/facultyParking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Faculty Parking" />
+
+    <RadioButton
+        android:id="@+id/gradParking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Graduate Parking" />
+
+    <RadioButton
+        android:id="@+id/ugradParking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Under Graduate Parking" />
+
+    <RadioButton
+        android:id="@+id/unpaidLot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="U lot Parking" />
+
+    <RadioButton
+        android:id="@+id/visitorParking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Visitor Parking" />
+
+    <Button
+        android:id="@+id/saveSettingsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Settings" />
+</LinearLayout>
