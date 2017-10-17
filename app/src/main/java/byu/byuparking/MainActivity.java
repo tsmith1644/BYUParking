@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.filterTitle:
                 //switch activity
                 Intent intent = new Intent(this,FilterActivity.class);
+                String preference = lots.getCurrentPreference();
+                intent.putExtra("Preference",preference);
                 startActivity(intent);
                 return true;
             default:

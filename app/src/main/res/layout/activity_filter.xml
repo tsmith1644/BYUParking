@@ -14,6 +14,13 @@
         android:layout_height="436dp">
 
         <RadioButton
+            android:id="@+id/allLots"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Show All Parking" />
+
+        <RadioButton
             android:id="@+id/facultyParking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -11,6 +11,15 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class listOfLots {
     private TreeMap<String, Lot> parkingList = new TreeMap<>();
+    private String currentPreference ="All";
+
+    public String getCurrentPreference() {
+        return currentPreference;
+    }
+
+    public void setCurrentPreference(String currentPreference) {
+        this.currentPreference = currentPreference;
+    }
 
     //public Lot(int totalSpots, int currentAvailable, int hoursStart, int hoursEnd, String lotType, LatLng destination)
     public listOfLots() {
