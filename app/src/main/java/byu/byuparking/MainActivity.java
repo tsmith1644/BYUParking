@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         float zoomLevel = 14.0f;
         lots.getParkingList();
         for (Map.Entry<String, Lot> entry : lots.getParkingList().entrySet()) {
-            //mMap.addMarker(new MarkerOptions().position(entry.getValue().getDestination()).icon(BitmapDescriptorFactory.defaultMarker(entry.getValue().getAvailabilityColor())).title("Lot " + entry.getKey() + " Type: " + entry.getValue().getLotType() + " " + entry.getValue().displayAvailability()));
             drawParkingLot(entry.getValue(), entry.getKey());
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(byu, zoomLevel));
@@ -53,6 +52,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //add lot marker
         mMap.addMarker(new MarkerOptions().position(lot.getDestination()).icon(BitmapDescriptorFactory.defaultMarker(lot.getAvailabilityColor())).title("Lot " + name + " Type: " + lot.getLotType() + " " + lot.displayAvailability()));
         //draw lot polygon
-        mMap.addPolygon(new PolygonOptions().addAll(lot.getLotShape()));
+        mMap.addPolygon(new PolygonOptions().addAll(lot.getLotShape()).strokeColor(lot.getLotTypeColor()).fillColor(lot.getLotTypeColor()));
     }
 }

@@ -4,6 +4,8 @@ package byu.byuparking;
  * Created by Garrett on 10/5/2017.
  */
 
+import android.graphics.Color;
+
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -124,6 +126,22 @@ public class Lot
             return BitmapDescriptorFactory.HUE_YELLOW;
         } else {
             return BitmapDescriptorFactory.HUE_ORANGE;
+        }
+    }
+
+    public int getLotTypeColor() {
+        if (this.lotType == "A") {
+            return 0x660000FF;
+        } else if (this.lotType == "G") {
+            return 0x66FF0000;
+        } else if (this.lotType == "Y") {
+            return 0x66FFFF00;
+        } else if (this.lotType == "U") {
+            return 0x66FF00FF;
+        } else if (this.lotType == "V") {
+            return 0x66FFC0CB;
+        } else {
+            return 0x66FF0000;
         }
     }
 
