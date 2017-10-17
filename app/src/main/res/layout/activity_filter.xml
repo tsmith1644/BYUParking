@@ -9,39 +9,51 @@
         android:layout_height="wrap_content"
         android:text="Select what type of parking you would like to show:" />
 
-    <RadioButton
-        android:id="@+id/facultyParking"
+    <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Faculty Parking" />
+        android:layout_height="436dp">
 
-    <RadioButton
-        android:id="@+id/gradParking"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Graduate Parking" />
+        <RadioButton
+            android:id="@+id/facultyParking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Faculty Parking" />
 
-    <RadioButton
-        android:id="@+id/ugradParking"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Under Graduate Parking" />
+        <RadioButton
+            android:id="@+id/gradParking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Graduate Parking" />
 
-    <RadioButton
-        android:id="@+id/unpaidLot"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="U lot Parking" />
+        <RadioButton
+            android:id="@+id/ugradParking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Under Graduate Parking" />
 
-    <RadioButton
-        android:id="@+id/visitorParking"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Visitor Parking" />
+        <RadioButton
+            android:id="@+id/unpaidLot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="U lot Parking" />
+
+        <RadioButton
+            android:id="@+id/visitorParking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Visitor Parking" />
+
+    </RadioGroup>
 
     <Button
-        android:id="@+id/saveSettingsButton"
+        android:id="@+id/saveSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save Settings" />
+
 </LinearLayout>
