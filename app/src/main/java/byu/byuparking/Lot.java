@@ -120,7 +120,7 @@ public class Lot
             return BitmapDescriptorFactory.HUE_GREEN;
         } else if (currentAvailable > 20) {
             return BitmapDescriptorFactory.HUE_YELLOW;
-        } else if (currentAvailable > 10) {
+        } else if (currentAvailable > 0) {
             return BitmapDescriptorFactory.HUE_ORANGE;
         } else {
             return BitmapDescriptorFactory.HUE_RED;
@@ -132,7 +132,7 @@ public class Lot
             return 0x6600FF00;
         } else if (currentAvailable > 20) {
             return 0x66FFFF00;
-        } else if (currentAvailable > 10) {
+        } else if (currentAvailable > 0) {
             return 0x66FF8C00;
         } else {
             return 0x66FF0000;
