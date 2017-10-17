@@ -116,30 +116,24 @@ public class Lot
     }
 
     public float getAvailabilityColor() {
-        if (currentAvailable == 0 || totalSpots == 0) {
-            return BitmapDescriptorFactory.HUE_RED;
-        }
-        float percentAvailable = (float) currentAvailable / (float) totalSpots;
-        if (percentAvailable > 0.5) {
+        if (currentAvailable > 50) {
             return BitmapDescriptorFactory.HUE_GREEN;
-        } else if (percentAvailable > 0.1) {
+        } else if (currentAvailable > 20) {
             return BitmapDescriptorFactory.HUE_YELLOW;
-        } else {
+        } else if (currentAvailable > 10) {
             return BitmapDescriptorFactory.HUE_ORANGE;
+        } else {
+            return BitmapDescriptorFactory.HUE_RED;
         }
     }
 
     public int getLotTypeColor() {
-        if (this.lotType == "A") {
-            return 0x660000FF;
-        } else if (this.lotType == "G") {
-            return 0x66FF0000;
-        } else if (this.lotType == "Y") {
+        if (currentAvailable > 50) {
+            return 0x6600FF00;
+        } else if (currentAvailable > 20) {
             return 0x66FFFF00;
-        } else if (this.lotType == "U") {
-            return 0x66FF00FF;
-        } else if (this.lotType == "V") {
-            return 0x66FFC0CB;
+        } else if (currentAvailable > 10) {
+            return 0x66FF8C00;
         } else {
             return 0x66FF0000;
         }
@@ -149,7 +143,5 @@ public class Lot
     {
         return degree * (Math.PI/180);
     }
-
-
 
 }
