@@ -35,16 +35,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        lots = new listOfLots();
         if(savedInstanceState!=null)
         {
             Intent intent = getIntent();
             lotsToShow = intent.getStringExtra("Preferences");
-            Log.d("RETURN","Intent returned correctly");
+            Log.e("RETURN", "Intent returned correctly");
         }
         else
         {
             lotsToShow = lots.getCurrentPreference();
-            Log.d("CREATION", "Intent does not exist");
+            Log.e("CREATION", "Intent does not exist");
         }
     }
 
@@ -56,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        lots = new listOfLots();
         // Add a marker in Sydney and move the camera
         LatLng byu = new LatLng(40.2518, -111.6493);
         float zoomLevel = 14.0f;
