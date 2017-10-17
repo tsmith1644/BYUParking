@@ -15,19 +15,26 @@ import android.widget.RadioButton;
 
 public class FilterActivity extends AppCompatActivity
 {
-    private RadioButton all = (RadioButton)findViewById(R.id.allLots);
-    private RadioButton faculty = (RadioButton)findViewById(R.id.facultyParking);
-    private RadioButton grad = (RadioButton)findViewById(R.id.gradParking);
-    private RadioButton ugrad =( RadioButton)findViewById(R.id.ugradParking);
-    private RadioButton visitor = (RadioButton)findViewById(R.id.visitorParking);
-    private RadioButton notPaid = (RadioButton)findViewById(R.id.unpaidLot);
-    private Button save = (Button)findViewById(R.id.saveSettings);
+    private RadioButton all;
+    private RadioButton faculty;
+    private RadioButton grad;
+    private RadioButton ugrad;
+    private RadioButton visitor;
+    private RadioButton notPaid;
+    private Button save;
     private FilterActivity aView;
     @Override
     protected void onCreate(Bundle savedInstanceBundle)
     {
         super.onCreate(savedInstanceBundle);
         setContentView(R.layout.activity_filter);
+        all = (RadioButton)findViewById(R.id.allLots);
+        faculty = (RadioButton)findViewById(R.id.facultyParking);
+        grad = (RadioButton)findViewById(R.id.gradParking);
+        ugrad =( RadioButton)findViewById(R.id.ugradParking);
+         visitor = (RadioButton)findViewById(R.id.visitorParking);
+         notPaid = (RadioButton)findViewById(R.id.unpaidLot);
+        save = (Button)findViewById(R.id.saveSettings);
         aView = this;
         Intent intent = getIntent();
         String preferences = intent.getStringExtra("Preference");
