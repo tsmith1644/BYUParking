@@ -12,16 +12,20 @@ import com.google.android.gms.maps.model.PolygonOptions;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import java.io.Console;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private listOfLots lots;
+    private String lotsToShow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        if(!savedInstanceState.isEmpty())
+        {
+            Intent intent = getIntent();
+            lotsToShow = intent.getStringExtra("Preferences");
+            Log.d("RETURN","Intent returned correctly");
+        }
+        else
+        {
+            lotsToShow = lots.getCurrentPreference();
+            Log.d("CREATION", "Intent does not exist");
+        }
     }
 
     /**
