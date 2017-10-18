@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.io.Console;
+import java.sql.Time;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -31,22 +32,22 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
         lots = new listOfLots();
         if(getIntent().hasExtra("Preferences"))
         {
             Intent intent = getIntent();
             lotsToShow = intent.getStringExtra("Preferences");
-            Log.e("RETURN", "Intent returned correctly");
+            //Log.e("RETURN", "Lots to Show = " + lotsToShow);
         }
         else
         {
             lotsToShow = lots.getCurrentPreference();
-            Log.e("CREATION", "Intent does not exist");
+            //Log.e("CREATION", "Intent does not exist");
         }
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
     /**
@@ -62,7 +63,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         float zoomLevel = 14.0f;
         lots.getParkingList();
         for (Map.Entry<String, Lot> entry : lots.getParkingList().entrySet()) {
-            drawParkingLot(entry.getValue(), entry.getKey());
+            if (shouldDrawLot(entry.getValue())) {
+                drawParkingLot(entry.getValue(), entry.getKey());
+            }
         }
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(byu, zoomLevel));
     }
@@ -72,6 +75,53 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.addMarker(new MarkerOptions().position(lot.getDestination()).icon(BitmapDescriptorFactory.defaultMarker(lot.getAvailabilityColor())).title("Lot " + name + " Type: " + lot.getLotType() + " " + lot.displayAvailability()));
         //draw lot polygon
         mMap.addPolygon(new PolygonOptions().addAll(lot.getLotShape()).strokeColor(lot.getLotTypeColor()).fillColor(lot.getLotTypeColor()));
+    }
+
+    public boolean shouldDrawLot(Lot lot) {
+        if (isOpenTime(lot)) {
+            return true;
+        }
+        if (lotsToShow.equals("All")) {
+            return true;
+        } else if (lotsToShow.equals("Faculty")) {
+            if (lot.getLotType().equals("A") || lot.getLotType().equals("G") || lot.getLotType().equals("Y") || lot.getLotType().equals("U")) {
+                return true;
+            }
+        } else if (lotsToShow.equals("Grad")) {
+            if (lot.getLotType().equals("G") || lot.getLotType().equals("Y") || lot.getLotType().equals("U")) {
+                return true;
+            }
+        } else if (lotsToShow.equals("Ugrad")) {
+            if (lot.getLotType().equals("Y") || lot.getLotType().equals("U")) {
+                return true;
+            }
+        } else if (lotsToShow.equals("Visitor")) {
+            if (lot.getLotType().equals("V")) {
+                return true;
+            }
+        } else if (lotsToShow.equals("Notpaid")) {
+            if (lot.getLotType().equals("U")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isOpenTime(Lot lot) {
+        boolean isOpen = false;
+        int hours = new Time(System.currentTimeMillis()).getHours();
+        if (hours < 12) {
+            if (hours < lot.getHoursStart()) {
+                isOpen = true;
+            }
+        } else {
+            hours = hours - 12;
+            if (hours >= lot.getHoursEnd()) {
+                isOpen = true;
+            }
+        }
+        Log.e("RETURN", "Hours = " + hours);
+        return isOpen;
     }
 
     @Override

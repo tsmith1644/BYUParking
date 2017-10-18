@@ -32,8 +32,8 @@ public class FilterActivity extends AppCompatActivity
         faculty = (RadioButton)findViewById(R.id.facultyParking);
         grad = (RadioButton)findViewById(R.id.gradParking);
         ugrad =( RadioButton)findViewById(R.id.ugradParking);
-         visitor = (RadioButton)findViewById(R.id.visitorParking);
-         notPaid = (RadioButton)findViewById(R.id.unpaidLot);
+        visitor = (RadioButton) findViewById(R.id.visitorParking);
+        notPaid = (RadioButton) findViewById(R.id.unpaidLot);
         save = (Button)findViewById(R.id.saveSettings);
         aView = this;
         Intent intent = getIntent();
