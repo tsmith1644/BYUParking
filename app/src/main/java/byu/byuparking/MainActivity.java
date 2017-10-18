@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void drawParkingLot(Lot lot, String name) {
         //add lot marker
-        mMap.addMarker(new MarkerOptions().position(lot.getDestination()).icon(BitmapDescriptorFactory.defaultMarker(lot.getAvailabilityColor())).title("Lot " + name + " Type: " + lot.getLotType() + " " + lot.displayAvailability()));
+        mMap.addMarker(new MarkerOptions().position(lot.getDestination()).icon(BitmapDescriptorFactory.defaultMarker(lot.getAvailabilityColor())).title("Lot " + name).snippet(lot.displayAvailability()));
         //draw lot polygon
         mMap.addPolygon(new PolygonOptions().addAll(lot.getLotShape()).strokeColor(lot.getLotTypeColor()).fillColor(lot.getLotTypeColor()));
     }

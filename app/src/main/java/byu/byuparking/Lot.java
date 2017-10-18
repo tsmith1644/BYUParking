@@ -88,7 +88,7 @@ public class Lot
     public String displayAvailability()
     {
         //could possibly remove available
-        String results = Integer.toString(currentAvailable) + "/"+Integer.toString(totalSpots)+ " available";
+        String results = "Available Spots: " + Integer.toString(currentAvailable);
         return results;
     }
 
