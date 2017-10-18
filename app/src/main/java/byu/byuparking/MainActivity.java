@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         lots = new listOfLots();
-        if(getIntent() !=null)
+        if(getIntent().hasExtra("Preferences"))
         {
             Intent intent = getIntent();
             lotsToShow = intent.getStringExtra("Preferences");
