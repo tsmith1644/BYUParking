@@ -173,6 +173,38 @@ public class listOfLots {
         Y19BShape.add(new LatLng(40.254949,-111.647291));
         Lot Y19B = new Lot(75,25,7,11,"Y",new LatLng(40.255620,-111.647718),Y19BShape);
 
+        List<LatLng> Y34Shape = new ArrayList<>();
+        Y34Shape.add(new LatLng(40.245094,-111.656080));
+        Y34Shape.add(new LatLng(40.245086,-111.655367));
+        Y34Shape.add(new LatLng(40.244439,-111.655372));
+        Y34Shape.add(new LatLng(40.244463,-111.655984));
+        Lot Y34 = new Lot(100,25,7,4,"Y", new LatLng(40.244725,-111.655603), Y34Shape);
+
+        List<LatLng> Y56Shape = new ArrayList<>();
+        Y56Shape.add(new LatLng(40.244168,-111.655023));
+        Y56Shape.add(new LatLng(40.244197,-111.653511));
+        Y56Shape.add(new LatLng(40.243697,-111.653479));
+        Y56Shape.add(new LatLng(40.243722,-111.654981));
+        Lot Y56 = new Lot(125,0,7,4,"Y",new LatLng(40.243943,-111.654294),Y56Shape);
+
+        List<LatLng> Y33Shape = new ArrayList<>();
+        Y33Shape.add(new LatLng(40.244160,-111.651483));
+        Y33Shape.add(new LatLng(40.244193,-111.650689));
+        Y33Shape.add(new LatLng(40.243136,-111.650791));
+        Y33Shape.add(new LatLng(40.243161,-111.651542));
+        Lot Y33 = new Lot (76,6,7,4,"Y", new LatLng(40.243677,-111.651156), Y33Shape);
+
+        List<LatLng> Y59Shape = new ArrayList<>();
+        Y59Shape.add(new LatLng(40.244144,-111.649740));
+        Y59Shape.add(new LatLng(40.244168,-111.648393));
+        Y59Shape.add(new LatLng(40.243661,-111.648457));
+        Y59Shape.add(new LatLng(40.243677,-111.649804));
+        Lot Y59 = new Lot(100,27,7,4,"Y",new LatLng(40.243894,-111.649144),Y59Shape);
+
+        parkingList.put("Y34",Y34);
+        parkingList.put("Y56",Y56);
+        parkingList.put("Y33",Y33);
+        parkingList.put("Y59",Y59);
         parkingList.put("Y37B",Y37B);
         parkingList.put("A4",A4);
         parkingList.put("A16B",A16B);
