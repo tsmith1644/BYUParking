@@ -1,5 +1,6 @@
 package byu.byuparking;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -95,7 +96,8 @@ public class FilterActivity extends AppCompatActivity
 
                 Intent intent1 = new Intent(aView,MainActivity.class);
                 intent1.putExtra("Preferences", returnPref);
-                startActivity(intent1);
+                setResult(Activity.RESULT_OK, intent1);
+                finish();
             }
 
         });

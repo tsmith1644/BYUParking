@@ -9,6 +9,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
 
+import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.io.Console;
@@ -50,6 +53,30 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                lotsToShow = data.getStringExtra("Preferences");
+                //Log.e("RETURN", "Lots to Show = " + lotsToShow);
+                if (mMap != null) { //prevent crashing if the map doesn't exist yet (eg. on starting activity)
+                    mMap.clear();
+                    LatLng byu = new LatLng(40.2518, -111.6493);
+                    float zoomLevel = 14.0f;
+                    for (Map.Entry<String, Lot> entry : lots.getParkingList().entrySet()) {
+                        if (shouldDrawLot(entry.getValue())) {
+                            drawParkingLot(entry.getValue(), entry.getKey());
+                        }
+                    }
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(byu, zoomLevel));
+                }
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }
     /**
      * This is where we can add markers or lines, add listeners or move the camera. In this case,
      * we
@@ -61,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Add a marker in Sydney and move the camera
         LatLng byu = new LatLng(40.2518, -111.6493);
         float zoomLevel = 14.0f;
-        lots.getParkingList();
         for (Map.Entry<String, Lot> entry : lots.getParkingList().entrySet()) {
             if (shouldDrawLot(entry.getValue())) {
                 drawParkingLot(entry.getValue(), entry.getKey());
@@ -120,7 +146,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 isOpen = true;
             }
         }
-        Log.e("RETURN", "Hours = " + hours);
         return isOpen;
     }
 
@@ -142,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Intent intent = new Intent(this,FilterActivity.class);
                 String preference = lots.getCurrentPreference();
                 intent.putExtra("Preference",preference);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
                 return true;
             default:
                 return false;
