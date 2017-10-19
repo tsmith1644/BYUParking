@@ -18,7 +18,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.Console;
@@ -30,11 +32,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private listOfLots lots;
     private String lotsToShow;
+    private Button recenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        recenter = (Button) findViewById(R.id.recenterButton);
         lots = new listOfLots();
         if(getIntent().hasExtra("Preferences"))
         {
@@ -51,6 +55,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        recenter.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                LatLng byu = new LatLng(40.2518, -111.6493);
+                float zoomLevel = 14.0f;
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(byu, zoomLevel));
+            }
+        });
     }
 
     @Override

@@ -7,11 +7,14 @@
         android:id="@+id/filterTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select what type of parking you would like to show:" />
+        android:text="Select the type of parking you would like to show:"
+        android:textSize="24dp"
+        android:textColor="@android:color/black" />
 
     <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="436dp">
+        android:layout_height="0dp"
+        android:layout_weight="0.75">
 
         <RadioButton
             android:id="@+id/allLots"
@@ -46,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="U lot Parking" />
+            android:text="Unpaid Parking" />
 
         <RadioButton
             android:id="@+id/visitorParking"
@@ -60,7 +63,8 @@
     <Button
         android:id="@+id/saveSettings"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save Settings" />
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:text="Find Parking" />
 
 </LinearLayout>
