@@ -6,12 +6,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -97,7 +99,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        // Add a marker in Sydney and move the camera
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                LatLng markerPosition = marker.getPosition();
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                        Uri.parse("http://maps.google.com/maps?daddr=" + markerPosition.latitude + "," + markerPosition.longitude));
+                startActivity(intent);
+            }
+        });
+
         LatLng byu = new LatLng(40.2518, -111.6493);
         float zoomLevel = 14.0f;
         for (Map.Entry<String, Lot> entry : lots.getParkingList().entrySet()) {
